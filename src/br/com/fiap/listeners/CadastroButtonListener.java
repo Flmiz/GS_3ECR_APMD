@@ -29,11 +29,11 @@ public class CadastroButtonListener implements ActionListener {
 		
 		String camposInvalidos = "";
 		
-		camposInvalidos = view.getCadastro().getNome().getText().length() <= 0 ? camposInvalidos.concat("Nome, ") : camposInvalidos;
-		camposInvalidos = view.getCadastro().getRua().getText().length() <= 0 ? camposInvalidos.concat("Endereço, ") : camposInvalidos;
-		camposInvalidos = view.getCadastro().getBairro().getText().length() <= 0 ? camposInvalidos.concat("Bairro, ") : camposInvalidos;
-		camposInvalidos = view.getCadastro().getCidade().getText().length() <= 0 ? camposInvalidos.concat("Cidade, ") : camposInvalidos;
-		camposInvalidos = !view.getCadastro().getPrecoWatt().getText().replace(".", "").matches("[0-9]+") ? camposInvalidos.concat("Preço do Watt, ") : camposInvalidos;
+		camposInvalidos = view.getCadastro().getNome().getText().length() <= 0 ? camposInvalidos.concat("nome, ") : camposInvalidos;
+		camposInvalidos = view.getCadastro().getEndereco().getText().length() <= 0 ? camposInvalidos.concat("endereço, ") : camposInvalidos;
+		camposInvalidos = view.getCadastro().getBairro().getText().length() <= 0 ? camposInvalidos.concat("bairro, ") : camposInvalidos;
+		camposInvalidos = view.getCadastro().getCidade().getText().length() <= 0 ? camposInvalidos.concat("cidade, ") : camposInvalidos;
+		camposInvalidos = !view.getCadastro().getPrecoWatt().getText().replace(".", "").matches("[0-9]+") ? camposInvalidos.concat("tipos de plugue, ") : camposInvalidos;
 
 		boolean hasValue = false;
 		
@@ -45,12 +45,12 @@ public class CadastroButtonListener implements ActionListener {
 			}
 		}
 		
-		camposInvalidos = !hasValue ? camposInvalidos.concat("Preço do Watt, ") : camposInvalidos;
+		camposInvalidos = !hasValue ? camposInvalidos.concat("preço do watt, ") : camposInvalidos;
 		
 		if (camposInvalidos.length() > 0) {
 			isValid = false;
 			camposInvalidos = camposInvalidos.substring(0, camposInvalidos.length() - 2);
-			JOptionPane.showMessageDialog(null, "dados inválidos nos campos " + camposInvalidos);
+			JOptionPane.showMessageDialog(null, "Dados inválidos nos seguintes campos: " + camposInvalidos);
 		}
 		
 		return isValid;
@@ -63,7 +63,7 @@ public class CadastroButtonListener implements ActionListener {
 		
 		Posto posto = new Posto();
 		posto.setNome(view.getCadastro().getNome().getText());
-		posto.setRua(view.getCadastro().getRua().getText());
+		posto.setRua(view.getCadastro().getEndereco().getText());
 		posto.setCidade(view.getCadastro().getCidade().getText());
 		posto.setBairro(view.getCadastro().getBairro().getText());
 		posto.setEstado(view.getCadastro().getEstado().getSelectedItem().toString());

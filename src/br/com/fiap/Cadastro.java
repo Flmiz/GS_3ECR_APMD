@@ -28,7 +28,7 @@ public class Cadastro extends JPanel {
 	private int width, height;
 	
 	private AppTextField nome;
-	private AppTextField rua;
+	private AppTextField endereco;
 	private AppTextField bairro;
 	private AppTextField cidade;
 	private AppComboBox<String> estado;
@@ -47,8 +47,8 @@ public class Cadastro extends JPanel {
 		return nome;
 	}
 
-	public AppTextField getRua() {
-		return rua;
+	public AppTextField getEndereco() {
+		return endereco;
 	}
 
 	public AppTextField getBairro() {
@@ -88,7 +88,7 @@ public class Cadastro extends JPanel {
 		this.height = height;
 
 		nome = new AppTextField(width/2 + 10, 25);
-		rua = new AppTextField(width/4, 25);
+		endereco = new AppTextField(width/4, 25);
 		bairro = new AppTextField(width/4, 25);
 		cidade = new AppTextField(width/4, 25);
 		estado = new AppComboBox<String>(estados, width/4, 25);
@@ -141,8 +141,8 @@ public class Cadastro extends JPanel {
 		firstPanel.setLayout(new BoxLayout(firstPanel, BoxLayout.Y_AXIS));
 		secondPanel.setLayout(new BoxLayout(secondPanel, BoxLayout.Y_AXIS));
 
-		firstPanel.add(new AppLabel("Rua:"));
-		firstPanel.add(rua);
+		firstPanel.add(new AppLabel("Endereço:"));
+		firstPanel.add(endereco);
 		secondPanel.add(new AppLabel("Bairro:"));
 		secondPanel.add(bairro);
 

@@ -35,7 +35,7 @@ public class Consulta extends JPanel {
 	private String endereco;
 	
 	private String[] colunas = {
-			"nome", "rua", "bairro", "cidade",
+			"nome", "endereco", "bairro", "cidade",
 			"estado", "plugue", "preço/Watt", "Avaliação"};
 	private DefaultTableModel tableModel = new DefaultTableModel(colunas, 0);
 	public JTable tabela = new JTable(tableModel) {
