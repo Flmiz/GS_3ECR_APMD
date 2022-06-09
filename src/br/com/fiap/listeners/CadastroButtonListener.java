@@ -1,0 +1,88 @@
+package br.com.fiap.listeners;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.util.List;
+
+import javax.swing.Action;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import br.com.fiap.Window;
+import br.com.fiap.dao.PostoDao;
+import br.com.fiap.model.Plugue;
+import br.com.fiap.model.Posto;
+import br.com.fiap.util.AppCheckBox;
+
+public class CadastroButtonListener implements ActionListener {
+
+	private Window view;
+	private PostoDao dao = new PostoDao();
+	
+	public CadastroButtonListener(Window view) {		
+		this.view = view;
+	}
+	
+	private boolean isDataValid() {
+		boolean isValid = true;
+		
+		String camposInvalidos = "";
+		
+		camposInvalidos = view.getCadastro().getNome().getText().length() <= 0 ? camposInvalidos.concat("Nome, ") : camposInvalidos;
+		camposInvalidos = view.getCadastro().getRua().getText().length() <= 0 ? camposInvalidos.concat("Endereço, ") : camposInvalidos;
+		camposInvalidos = view.getCadastro().getBairro().getText().length() <= 0 ? camposInvalidos.concat("Bairro, ") : camposInvalidos;
+		camposInvalidos = view.getCadastro().getCidade().getText().length() <= 0 ? camposInvalidos.concat("Cidade, ") : camposInvalidos;
+		camposInvalidos = !view.getCadastro().getPrecoWatt().getText().replace(".", "").matches("[0-9]+") ? camposInvalidos.concat("Preço do Watt, ") : camposInvalidos;
+
+		boolean hasValue = false;
+		
+		List<AppCheckBox> checkBoxOptions = view.getCadastro().getCheckBoxOptions();
+		for (AppCheckBox appCheckBox : checkBoxOptions) {
+			if (appCheckBox.isSelected()) {	
+				hasValue = true;
+				break;
+			}
+		}
+		
+		camposInvalidos = !hasValue ? camposInvalidos.concat("Preço do Watt, ") : camposInvalidos;
+		
+		if (camposInvalidos.length() > 0) {
+			isValid = false;
+			camposInvalidos = camposInvalidos.substring(0, camposInvalidos.length() - 2);
+			JOptionPane.showMessageDialog(null, "dados inválidos nos campos " + camposInvalidos);
+		}
+		
+		return isValid;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if (!isDataValid()) return;
+		
+		Posto posto = new Posto();
+		posto.setNome(view.getCadastro().getNome().getText());
+		posto.setRua(view.getCadastro().getRua().getText());
+		posto.setCidade(view.getCadastro().getCidade().getText());
+		posto.setBairro(view.getCadastro().getBairro().getText());
+		posto.setEstado(view.getCadastro().getEstado().getSelectedItem().toString());
+		posto.setPrecoWatt(new BigDecimal(view.getCadastro().getPrecoWatt().getText()));
+		posto.setAvaliacao((long) view.getCadastro().getAvaliacao().getSelection());
+
+		dao.insertPosto(posto);
+		
+		List<AppCheckBox> checkBoxOptions = view.getCadastro().getCheckBoxOptions();
+		for (int i = 0; i < checkBoxOptions.size(); i++) {
+			if (checkBoxOptions.get(i).isSelected()) {		
+				Plugue plugue = new Plugue();
+				plugue.setId(Long.parseLong(posto.getId().toString() + i, 10));
+				plugue.setPlugue(checkBoxOptions.get(i).getText());
+				dao.insertPlugue(plugue);
+			}
+		}
+		
+		view.getConsulta().carregarDados();
+	}
+
+}
