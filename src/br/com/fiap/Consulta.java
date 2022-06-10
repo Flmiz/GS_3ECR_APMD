@@ -93,7 +93,7 @@ public class Consulta extends JPanel {
 				}
 			}
 			plugues = plugues.substring(0, plugues.length() - 2);
-			Vector<String> data = (Vector<String>) posto.getData();
+			Vector<String> data = posto.getData();
 			data.set(5, plugues);
 			lista.add(data);
 		}
@@ -139,7 +139,7 @@ public class Consulta extends JPanel {
 			String url = "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=" + width + "x" + height + "&markers=color:red|"+ endereco + "&key=AIzaSyAtQSFh1xVy-Gu6QJmaDYt2NkHkgAfrWF0";
 			JLabel map = new JLabel(new ImageIcon(ImageIO.read(new URL(url))));
 			
-			JFrame frame = new JFrame();
+			JFrame frame = new JFrame("");
 			frame.setTitle(endereco);
 			frame.setSize(width, height);
 			frame.setResizable(false);

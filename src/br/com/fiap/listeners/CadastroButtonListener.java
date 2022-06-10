@@ -5,10 +5,7 @@ import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.swing.Action;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import br.com.fiap.Window;
 import br.com.fiap.dao.PostoDao;
 import br.com.fiap.model.Plugue;
@@ -33,7 +30,7 @@ public class CadastroButtonListener implements ActionListener {
 		camposInvalidos = view.getCadastro().getEndereco().getText().length() <= 0 ? camposInvalidos.concat("endereço, ") : camposInvalidos;
 		camposInvalidos = view.getCadastro().getBairro().getText().length() <= 0 ? camposInvalidos.concat("bairro, ") : camposInvalidos;
 		camposInvalidos = view.getCadastro().getCidade().getText().length() <= 0 ? camposInvalidos.concat("cidade, ") : camposInvalidos;
-		camposInvalidos = !view.getCadastro().getPrecoWatt().getText().replace(".", "").matches("[0-9]+") ? camposInvalidos.concat("tipos de plugue, ") : camposInvalidos;
+		camposInvalidos = !view.getCadastro().getPrecoWatt().getText().replace(".", "").matches("[0-9]+") ? camposInvalidos.concat("preço do watt, ") : camposInvalidos;
 
 		boolean hasValue = false;
 		
@@ -45,7 +42,7 @@ public class CadastroButtonListener implements ActionListener {
 			}
 		}
 		
-		camposInvalidos = !hasValue ? camposInvalidos.concat("preço do watt, ") : camposInvalidos;
+		camposInvalidos = !hasValue ? camposInvalidos.concat("tipos de plugue, ") : camposInvalidos;
 		
 		if (camposInvalidos.length() > 0) {
 			isValid = false;
@@ -83,6 +80,7 @@ public class CadastroButtonListener implements ActionListener {
 		}
 		
 		view.getConsulta().carregarDados();
+		JOptionPane.showMessageDialog(null, "Posto cadastrado com sucesso.");
 	}
 
 }

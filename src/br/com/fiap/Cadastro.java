@@ -2,15 +2,12 @@ package br.com.fiap;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
 import br.com.fiap.listeners.CadastroButtonListener;
 import br.com.fiap.util.AppButtonGroup;
 import br.com.fiap.util.AppCheckBox;
@@ -19,7 +16,6 @@ import br.com.fiap.util.AppLabel;
 import br.com.fiap.util.AppTextField;
 import br.com.fiap.util.OptionType;
 import br.com.fiap.util.StarRater;
-import br.com.fiap.util.StarRater.StarListener;
 
 public class Cadastro extends JPanel {
 

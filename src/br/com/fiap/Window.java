@@ -1,21 +1,9 @@
 package br.com.fiap;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import br.com.fiap.listeners.CadastroButtonListener;
 import br.com.fiap.user.LogIn;
-import br.com.fiap.util.AppLabel;
 
 public class Window extends JFrame {
 

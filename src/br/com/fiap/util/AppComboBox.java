@@ -1,10 +1,8 @@
 package br.com.fiap.util;
 
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
 
@@ -12,8 +10,6 @@ public class AppComboBox<E> extends JComboBox<E> {
 
 	private static final long serialVersionUID = 1L;
 	
-	private int width, height;
-
 	public AppComboBox(E[] values) {
 		super(values);
 		init();
@@ -21,8 +17,6 @@ public class AppComboBox<E> extends JComboBox<E> {
 	
 	public AppComboBox(E[] values, int width, int height) {
 		super(values);
-		this.width = width;
-		this.height = height;
 		init(width, height);
 	}
 	

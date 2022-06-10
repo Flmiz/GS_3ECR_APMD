@@ -70,7 +70,7 @@ public class Posto {
 		return "Posto [nome=" + nome + ", rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", estado="
 				+ estado + ", precoWatt=" + precoWatt + "]";
 	}
-	public Vector<?> getData() {
+	public Vector<String> getData() {
 		Vector<String> data = new Vector<String>();
 		data.add(nome);
 		data.add(rua);
